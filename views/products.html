@@ -1,0 +1,86 @@
+
+    <div class="productMenu row">
+    	<div class="col-md-12">
+			<div class="col-sm-6 col-md-4" ng-repeat="product in myProducts">
+				<div class="thumbnail" >
+					<h4 class="text-center"><span class="label label-primary">{{product.gender}}</span> / <span class="label label-light">{{product.category}}</span></h4>
+					<img ng-src="{{product.image}}" class="img-responsive">
+					<div class="caption">
+						<div class="row">
+							<div class="col-md-6 col-xs-6">
+								<h3>{{product.name}}</h3>
+							</div>
+							<div class="col-md-6 col-xs-6 price">
+								<h3>
+								<label>${{product.price}}</label></h3>
+							</div>
+						</div>
+						<p>{{product.shortDescription}}</p>
+						<div class="row">
+							<div class="col-md-6">
+								<a class="btn btn-primary btn-product"><span class="glyphicon glyphicon-thumbs-up"></span> Like</a> 
+							</div>
+							<div class="col-md-6">
+								<a href="#" class="btn btn-success btn-product"><span class="glyphicon glyphicon-shopping-cart"></span> Buy</a></div>
+						</div>
+
+						<p> </p>
+					</div>
+				</div>
+			</div>
+<!-- 			<div class="col-sm-6 col-md-4">
+				<div class="thumbnail" >
+					<h4 class="text-center"><span class="label label-pink">Women's</span> / <span class="label label-purple">Dress</span></h4>
+					<img src="img/clothes/womens/dress/dress1.jpg" class="img-responsive">
+					<div class="caption">
+						<div class="row">
+							<div class="col-md-6 col-xs-6">
+								<h3>Turquoise Dress</h3>
+							</div>
+							<div class="col-md-6 col-xs-6 price">
+								<h3>
+								<label>$54.99</label></h3>
+							</div>
+						</div>
+						<p>Women's blue dress with fringe pattern</p>
+						<div class="row">
+							<div class="col-md-6">
+								<a class="btn btn-primary btn-product"><span class="glyphicon glyphicon-thumbs-up"></span> Like</a> 
+							</div>
+							<div class="col-md-6">
+								<a href="#" class="btn btn-success btn-product"><span class="glyphicon glyphicon-shopping-cart"></span> Buy</a></div>
+						</div>
+
+						<p> </p>
+					</div>
+				</div>
+			</div>
+            <div class="col-sm-6 col-md-4">
+				<div class="thumbnail" >
+					<h4 class="text-center"><span class="label label-primary">Men's</span> / <span class="label label-info">Shirt</span></h4>
+					<img src="img/clothes/mens/shirt/shirt_striped.jpg" class="img-responsive">
+					<div class="caption">
+						<div class="row">
+							<div class="col-md-6 col-xs-6">
+								<h3>Striped Shirt</h3>
+							</div>
+							<div class="col-md-6 col-xs-6 price">
+								<h3>
+								<label>$24.00</label></h3>
+							</div>
+						</div>
+						<p>Men's striped dress shirt</p>
+						<div class="row">
+							<div class="col-md-6">
+								<a class="btn btn-primary btn-product"><span class="glyphicon glyphicon-thumbs-up"></span> Like</a> 
+							</div>
+							<div class="col-md-6">
+								<a href="#" class="btn btn-success btn-product"><span class="glyphicon glyphicon-shopping-cart"></span> Buy</a></div>
+						</div>
+
+						<p> </p>
+					</div>
+				</div>
+			</div>   -->     
+        </div> 
+	</div>
