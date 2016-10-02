@@ -7,7 +7,7 @@
 		        <span class="icon-bar"></span>
 		        <span class="icon-bar"></span>
 		      </button>
-		      <div class="navbar-brand navbar-brand-centered">City Marks</div>
+		      <a href="index.php"><div class="navbar-brand navbar-brand-centered">City Marks</div></a>
 		    </div>
 
 		    
@@ -20,6 +20,24 @@
 		      <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Account<span class="caret"></span></a>
+              <?php if(isset($_SESSION['role'])): ?>
+              <ul id="login-dp" class="dropdown-menu">
+                <li>
+                   <div class="row">
+                      <div class="col-md-12">
+                        <div class="text-center">
+                          <div class="btn-group">
+                            <a href="#" class="btn btn-primary btn-account">Manage Account</a>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="bottom text-center">
+                        <a href="includes/logout.php"><b>Log Out</b></a>
+                      </div>
+                    </div>
+                </li>
+              </ul>
+              <?php else: ?>
               <ul id="login-dp" class="dropdown-menu">
                 <li>
                    <div class="row">
@@ -30,18 +48,18 @@
                           <a href="#" class="btn btn-tw"><i class="fa fa-twitter"></i> Twitter</a>
                         </div>
                                         or
-                         <form class="form" role="form" method="post" action="login" accept-charset="UTF-8" id="login-nav">
+                         <form class="form" role="form" method="post" action="includes/login.php" accept-charset="UTF-8" id="login-nav">
                             <div class="form-group">
                                <label class="sr-only" for="Email">Email address</label>
-                               <input type="email" class="form-control" id="Email" placeholder="Email address" required>
+                               <input type="email" class="form-control" name="email" id="Email" placeholder="Email address" required>
                             </div>
                             <div class="form-group">
                                <label class="sr-only" for="Password">Password</label>
-                               <input type="password" class="form-control" id="Password" placeholder="Password" required>
-                                                     <div class="help-block text-right"><a href="">Forget the password ?</a></div>
+                               <input type="password" class="form-control" name="password" id="Password" placeholder="Password" required>
+                                                     <div class="help-block text-right"><a href="">Forgot your password?</a></div>
                             </div>
                             <div class="form-group">
-                               <button type="submit" class="btn btn-primary btn-block">Sign in</button>
+                               <button type="submit" class="btn btn-primary btn-block" name="login">Sign in</button>
                             </div>
                             <div class="checkbox">
                                <label>
@@ -51,11 +69,12 @@
                          </form>
                       </div>
                       <div class="bottom text-center">
-                        New here ? <a href="#"><b>Join Us</b></a>
+                        New here ? <a href="registration.php"><b>Join Us</b></a>
                       </div>
                    </div>
                 </li>
               </ul>
+              <?php endif; ?>
             </li>
 		        
             <!--Shopping Cart-->

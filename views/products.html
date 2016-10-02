@@ -3,7 +3,7 @@
     	<div class="col-md-12">
 			<div class="col-sm-6 col-md-4" ng-repeat="product in myProducts">
 				<div class="thumbnail" >
-					<h4 class="text-center"><span class="label label-primary">{{product.gender}}</span> / <span class="label label-light">{{product.category}}</span></h4>
+					<h4 class="text-center"><span class="label" ng-class="[getGenderClass(product.gender)]">{{product.gender}}</span> / <span class="label" ng-class="[getProductClass(product.category)]">{{product.category}}</span></h4>
 					<img ng-src="{{product.image}}" class="img-responsive">
 					<div class="caption">
 						<div class="row">

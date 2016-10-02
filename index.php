@@ -1,8 +1,9 @@
+<?php session_start(); ?>
 <?php
 	include 'includes/header.php';
 ?>
 <?php
-	include 'includes/nav.html';
+	include 'includes/nav.php';
 ?>
 <div class="body-content">
 	
