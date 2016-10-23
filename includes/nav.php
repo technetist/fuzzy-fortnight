@@ -1,3 +1,5 @@
+
+
     <nav class="navbar navbar-default" role="navigation">
   	  <div class="container">
 		    <div class="navbar-header">
@@ -79,66 +81,55 @@
 		        
             <!--Shopping Cart-->
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> <span class="glyphicon glyphicon-shopping-cart"></span> 0 - Items<span class="caret"></span></a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> <span class="glyphicon glyphicon-shopping-cart"></span> <?php echo $itemCount; ?> - Items<span class="caret"></span></a>
               <ul class="dropdown-menu dropdown-cart" role="menu">
+                  <?php
+                    if($itemCount > 0){
+                        $pids = "";
+                        foreach ($_SESSION['cart'] as $id) {
+                            $pids = $pids. $id.',';
+                        }
+
+                        $pids = rtrim($pids, ",");
+
+                        $sql = "SELECT product_id, product_name, product_price, product_img FROM products WHERE product_id IN (".$pids.")";
+                        $query = mysqli_query($connection,$sql);
+                        $row = mysqli_num_rows($query);
+
+
+                        if($row == 0){
+
+                             echo '<li>No products found in your cart.</li>';
+
+                        }else{
+                            $totalPrice = 0;
+                            while ( $product = mysqli_fetch_assoc($query)) {
+
+                                $productImg = $product['product_img'];
+                                $productId = $product['product_id'];
+                                $productName = $product['product_name'];
+                                $productPrice = $product['product_price'];
+
+                                $totalPrice += $productPrice;
+                            
+                            
+                        ?>
                   <li>
                       <span class="item">
                         <span class="item-left">
-                            <img src="http://lorempixel.com/50/50/" alt="" />
+                            <img src="<?php echo $productImg ?>" alt="" style="width: 50px; height: 50px;"/>
                             <span class="item-info">
-                                <span>Item name</span>
-                                <span>$00</span>
+                                <span><?php echo $productName ?></span>
+                                <span>$<?php echo $productPrice ?></span>
                             </span>
-                        </span>
-                        <span class="item-right">
-                            <button class="btn btn-xs btn-danger pull-right">x</button>
                         </span>
                     </span>
                   </li>
-                  <li>
-                      <span class="item">
-                        <span class="item-left">
-                            <img src="http://lorempixel.com/50/50/" alt="" />
-                            <span class="item-info">
-                                <span>Item name</span>
-                                <span>$00</span>
-                            </span>
-                        </span>
-                        <span class="item-right">
-                            <button class="btn btn-xs btn-danger pull-right">x</button>
-                        </span>
-                    </span>
-                  </li>
-                  <li>
-                      <span class="item">
-                        <span class="item-left">
-                            <img src="http://lorempixel.com/50/50/" alt="" />
-                            <span class="item-info">
-                                <span>Item name</span>
-                                <span>$00</span>
-                            </span>
-                        </span>
-                        <span class="item-right">
-                            <button class="btn btn-xs btn-danger pull-right">x</button>
-                        </span>
-                    </span>
-                  </li>
-                  <li>
-                      <span class="item">
-                        <span class="item-left">
-                            <img src="http://lorempixel.com/50/50/" alt="" />
-                            <span class="item-info">
-                                <span>Item name</span>
-                                <span>$00</span>
-                            </span>
-                        </span>
-                        <span class="item-right">
-                            <button class="btn btn-xs btn-danger pull-right">x</button>
-                        </span>
-                    </span>
-                  </li>
+                  <?php }  } ?>
+                  
                   <li class="divider"></li>
-                  <li><a class="text-center" href="">View Cart</a></li>
+                  <li><a class="text-center" href="cart.php">View Cart</a></li>
+                  <?php } ?>
               </ul>
             </li>
 

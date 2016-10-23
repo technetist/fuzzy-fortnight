@@ -19,6 +19,7 @@
 		<link rel="stylesheet" href="css/bootstrap.min.css">
 		<link rel="stylesheet" href="css/bootstrap-theme.min.css">
 		<link rel="stylesheet" href="css/main.css">
+		<link rel="stylesheet" href="css/checkout.css">
 	    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
 	    <script src="https://code.angularjs.org/1.2.28/angular-route.min.js"></script>
 	</head>
