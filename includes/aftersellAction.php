@@ -13,8 +13,8 @@ while($row = mysqli_fetch_assoc($query)){
 }
 
 switch ($case) {
-	case '0':
-		header("Location: ../index.php");
+	case '6':
+		header("Location: ../thanks.php?id=".$orderID);
 	break;
 
 	case '1':
@@ -24,7 +24,7 @@ switch ($case) {
 			$update = "UPDATE orders SET total_price = total_price + ".$price.", aftersell = 1 WHERE id = ".$orderID."";
 			$update_query = mysqli_query($connection,$update);
 			if($update_query){
-				header("Location: ../index.php");
+				header("Location: ../thanks.php?id=".$orderID);
 			}
 			
 		} else {
@@ -40,7 +40,7 @@ switch ($case) {
 			$update = "UPDATE orders SET total_price = total_price + ".$price.", aftersell = 2 WHERE id = ".$orderID."";
 			$update_query = mysqli_query($connection,$update);
 			if($update_query){
-				header("Location: ../index.php");
+				header("Location: ../thanks.php?id=".$orderID);
 			}
 			
 		} else {
@@ -56,7 +56,7 @@ switch ($case) {
 			$update = "UPDATE orders SET total_price = total_price + ".$price.", aftersell = 3 WHERE id = ".$orderID."";
 			$update_query = mysqli_query($connection,$update);
 			if($update_query){
-				header("Location: ../index.php");
+				header("Location: ../thanks.php?id=".$orderID);
 			}
 			
 		} else {

@@ -105,7 +105,7 @@ case 'placeOrder':
                     $productPrice = $product['product_price'];
               
                 echo $productName . "<br>";
-            $sql = "INSERT INTO order_items (order_id, product_id, product_name, product_price) VALUES ('".$orderID."', '".$id."', '".$productName."', '".$productPrice."');";
+            $sql = "INSERT INTO order_items (order_id, order_product_id, order_product_name, order_product_price) VALUES ('".$orderID."', '".$id."', '".$productName."', '".$productPrice."');";
             $insertOrderItems = $connection->multi_query($sql);
             } } 
             if($insertOrderItems){

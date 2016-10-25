@@ -60,7 +60,6 @@ $custRow = mysqli_fetch_assoc($select_users_query);
 	  <p><img class="item" src="<?php echo $productImg ?>" /><?php echo $productName ?> for $<?php echo $productPrice ?></p>
 	  <?php  }?>
 	  <p>Total: $<?php echo $totalPrice;?>
-	  <?php print_r($_SESSION['cart']) ?>
 
 	 <!--  <p>You don't have a card saved with us, so you'll need to add one now</p> -->
 

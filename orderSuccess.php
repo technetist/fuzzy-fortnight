@@ -24,7 +24,7 @@ include 'includes/nav.php';
     	<div class="row">
 	    	<div class="col-md-12">
 	    	    	<?php 
-    		$query = "SELECT * FROM aftersell_items";
+    		$query = "SELECT * FROM aftersell_items WHERE item_id < 6";
     		$select_aftersell_query = mysqli_query($connection, $query);
     		while ($row = mysqli_fetch_assoc($select_aftersell_query)) {
     				$itemName = $row['item_name'];
@@ -62,7 +62,7 @@ include 'includes/nav.php';
 		</div>
 	</div>
 	<div class="container text-center">
-		<a href="includes/aftersellAction.php?choice=0" style="padding-bottom: 20px;">No thanks...</a>
+		<a href="includes/aftersellAction.php?choice=6" style="padding-bottom: 20px;">No thanks...</a>
 	</div>
 
 <?php
