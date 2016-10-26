@@ -44,12 +44,12 @@
                 <li>
                    <div class="row">
                       <div class="col-md-12">
-                        Login via
-                        <div class="social-buttons">
+                        Login 
+                        <!-- via <div class="social-buttons">
                           <a href="#" class="btn btn-fb"><i class="fa fa-facebook"></i> Facebook</a>
                           <a href="#" class="btn btn-tw"><i class="fa fa-twitter"></i> Twitter</a>
                         </div>
-                                        or
+                                        or -->
                          <form class="form" role="form" method="post" action="includes/login.php" accept-charset="UTF-8" id="login-nav">
                             <div class="form-group">
                                <label class="sr-only" for="Email">Email address</label>
@@ -58,16 +58,16 @@
                             <div class="form-group">
                                <label class="sr-only" for="Password">Password</label>
                                <input type="password" class="form-control" name="password" id="Password" placeholder="Password" required>
-                                                     <div class="help-block text-right"><a href="">Forgot your password?</a></div>
+                                                     <!-- <div class="help-block text-right"><a href="">Forgot your password?</a></div> -->
                             </div>
                             <div class="form-group">
                                <button type="submit" class="btn btn-primary btn-block" name="login">Sign in</button>
                             </div>
-                            <div class="checkbox">
+                            <!-- <div class="checkbox">
                                <label>
                                <input type="checkbox"> keep me logged-in
                                </label>
-                            </div>
+                            </div> -->
                          </form>
                       </div>
                       <div class="bottom text-center">

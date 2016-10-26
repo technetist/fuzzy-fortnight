@@ -62,7 +62,7 @@ include 'includes/nav.php';
 		</div>
 	</div>
 	<div class="container text-center">
-		<a href="includes/aftersellAction.php?choice=6" style="padding-bottom: 20px;">No thanks...</a>
+		<a href="includes/aftersellAction.php?choice=6&id=<?php echo $orderID ?>" style="padding-bottom: 20px;">No thanks...</a>
 	</div>
 
 <?php

@@ -35,10 +35,11 @@ include "includes/nav.php";
                 $productName = $product['order_product_name'];
                 $productPrice = $product['order_product_price'];
                 $totalPrice = $product['total_price'];
-               		$aftersellId = $product['aftersell'];
-	                $aftersellImg = $product['item_img'];
-	                $aftersellName = $product['item_name'];
-	                $aftersellPrice = $product['item_price'];
+           		$aftersellId = $product['aftersell'];
+                $aftersellImg = $product['item_img'];
+                $aftersellName = $product['item_name'];
+                $aftersellPrice = $product['item_price'];
+                $shipping = 6.94;
             	
 
                 
@@ -51,7 +52,7 @@ include "includes/nav.php";
 					<h4><?php echo $productName; ?></h4>
 				</div>
 				<div class="col-xs-2 col-sm-1 price text-center">
-					<p><?php echo $productPrice; ?></p>
+					<p>$<?php echo $productPrice; ?></p>
 				</div>
 				<div class="col-xs-1 col-sm-2">
 				</div>
@@ -81,10 +82,19 @@ include "includes/nav.php";
 			<div class="row total">
 				<div class="col-xs-1 col-sm-2">
 				</div>
-				<div class="col-xs-8 col-sm-7 text-right">Total:</div>
-				<div class="col-xs-2 col-sm-1 total-price"><?php echo $totalPrice; ?></div>
+				<div class="col-xs-8 col-sm-7 text-right">Standard Shipping:</div>
+				<div class="col-xs-2 col-sm-1 total-price">$<?php echo $shipping; ?></div>
 			</div>
-			
+			<div class="row total">
+				<div class="col-xs-1 col-sm-2">
+				</div>
+				<div class="col-xs-8 col-sm-7 text-right">Total:</div>
+				<div class="col-xs-2 col-sm-1 total-price">$<?php echo $totalPrice; ?></div>
+			</div>
+			<p>An email will be sent with this summary as well. (Once that feature is in place)</p>
+			<div class="text-center" style="padding-bottom: 20px;">
+				<a href="index.php">Click to go to the landing page</a>
+			</div>
 		</div>
 	<?php }else {?>
 		<h1>Oops! It appears there was an error.</h1>

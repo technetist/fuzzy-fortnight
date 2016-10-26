@@ -239,3 +239,8 @@ ul.dropdown-cart li .item-right button{
 .total-price {
     background: #F5F5F5;
 }
+.parsley-errors-list {
+    color: #e74c3c;
+    list-style-type: none;
+    margin-left: -35px;
+}
