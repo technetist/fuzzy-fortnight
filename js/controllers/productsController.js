@@ -2,9 +2,9 @@ app.controller('productsController', ['$scope', 'products',  function($scope, pr
 	products.success(function(data) {
     $scope.myProducts = data.records;
     $scope.getGenderClass = function (strValue) {
-	    if (strValue == ("Women's"))
+	    if (strValue == ("Female"))
 	        return "label-pink";
-	    else if (strValue == ("Men's"))
+	    else if (strValue == ("Male"))
 	        return "label-primary";
     }
     $scope.getProductClass = function (strValue) {
