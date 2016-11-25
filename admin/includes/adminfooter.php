@@ -8,6 +8,17 @@
 		<script src="../js/jquery-3.1.0.min.js"></script>
 		<script src="../js/bootstrap.js"></script>
 
+		    <script>
+    $(document).ready(function(){
+        $(".delete_link").on('click', function(){
+            var id = $(this).attr("rel");
+            var delete_url = "products.php?delete=" + id +"";
+            $(".modal_delete_link").attr("href", delete_url);
+            $("#myModal").modal('show');
+        });
+    });
+</script>
+
 </body>
 
 </html>

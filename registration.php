@@ -1,8 +1,14 @@
+
+<?php session_start(); ?>
+<?php
+    $itemCount = 0; 
+    if(isset($_SESSION['cart'])){
+        $itemCount = count(isset($_SESSION['cart']) ? $_SESSION['cart'] : array()); 
+    }
+?>
 <?php include "includes/db.php"; ?>
 <?php include "includes/header.php"; ?>
 <?php include "functions.php"; ?>
-
-<?php session_start(); ?>
 
 <?php 
 
@@ -12,6 +18,7 @@
         $username = escape($_POST['username']);
         $email = escape($_POST['email']);
         $password = escape($_POST['password']);
+        $gender = escape($_POST['gender']);
 
         if (!empty($first_name) && !empty($last_name) && !empty($username) && !empty($email) && !empty($password)) {
 
@@ -20,8 +27,8 @@
 
             $message = "<h6 class='text-center bg-success'>Your registration has been submitted</h6>";
 
-            $query = "INSERT INTO users (username, first_name, last_name, user_email, user_password, user_role) ";
-            $query .= "VALUES('{$username}', '{$first_name}', '{$last_name}', '{$email}', '{$safe_password}', 'Shopper' )";
+            $query = "INSERT INTO users (username, first_name, last_name, user_email, user_password, user_role, user_gender) ";
+            $query .= "VALUES('{$username}', '{$first_name}', '{$last_name}', '{$email}', '{$safe_password}', 'Shopper', '{$gender}' )";
             $register_user_query = mysqli_query($connection, $query);
             if (!$register_user_query) {
                 die("Query Failed " . mysqli_error($connection) . ' ' . mysqli_errno($connection));
@@ -63,6 +70,14 @@
  							<div class="form-group">
                                 <label for="last_name" class="sr-only">last name</label>
                                 <input type="text" name="last_name" id="last_name" class="form-control" placeholder="Last Name">
+                            </div>
+                            <div class="form-group">
+                                <label for="gender">Gender</label>
+                                <select name="gender" id="gender">
+                                    <option value="Male">Select</option>
+                                    <option value="Female">Female</option>
+                                    <option value="Male">Male</option>
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label for="username" class="sr-only">username</label>

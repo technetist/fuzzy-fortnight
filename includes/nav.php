@@ -15,9 +15,8 @@
 		    
 		    <div class="collapse navbar-collapse" id="navbar-brand-centered">
   		      <ul class="nav navbar-nav">
-  		        <li><a href="#">Mens</a></li>
-  		        <li><a href="#">Womens</a></li>
-  		        <li><a href="#">Accessories</a></li>
+  		        <li><a href="mens.php">Mens</a></li>
+  		        <li><a href="womens.php">Womens</a></li>
   		      </ul>
 		      <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
@@ -29,10 +28,19 @@
                       <div class="col-md-12">
                         <div class="text-center">
                           <div class="btn-group">
-                            <a href="#" class="btn btn-primary btn-account">Manage Account</a>
+                            <a href="profile.php" class="btn btn-primary btn-account">Manage Account</a>
                           </div>
                         </div>
                       </div>
+                      <?php if(isset($_SESSION['role']) && $_SESSION['role'] == 'Admin'): ?>
+                      <div class="col-md-12">
+                        <div class="text-center">
+                          <div class="btn-group">
+                            <a href="admin/admin.php" class="btn btn-primary btn-account">Admin Panel</a>
+                          </div>
+                        </div>
+                      </div>
+                    <?php endif; ?>
                       <div class="bottom text-center">
                         <a href="includes/logout.php"><b>Log Out</b></a>
                       </div>

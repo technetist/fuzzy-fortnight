@@ -37,11 +37,11 @@
 			  })
 			});
 		</script>
-		 <!-- Modules -->
+	 	<!-- Modules -->
 		<script src="js/app.js"></script>
 		<!-- Controllers -->
 		<script src="js/controllers/productsController.js"></script>
-		     <!-- Services -->
+     	<!-- Services -->
 		<script src="js/services/products.js"></script>
 	</body>
 </html>

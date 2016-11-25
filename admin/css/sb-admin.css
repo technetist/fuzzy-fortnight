@@ -224,3 +224,7 @@ ul.alert-dropdown {
 }
 .menuSpacing {margin-bottom: 20px;}
 .btnSpacing {padding-left: 0;}
+
+#chart_div2 {
+    margin-top: -100px;
+}

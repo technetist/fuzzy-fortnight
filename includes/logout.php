@@ -1,6 +1,8 @@
-<?php include "db.php"; ?>
 
 <?php session_start(); ?>
+
+<?php include "db.php"; ?>
+
 
 <?php 
 	$_SESSION['user_id'] = null;

@@ -14,6 +14,8 @@ app.controller('productsController', ['$scope', 'products',  function($scope, pr
 	        return "label-light";
 	    else if (strValue == ("Dress"))
 	        return "label-purple";
+	    else if (strValue == ("Shoes"))
+	        return "label-yellow";
     }
   });
 }]);

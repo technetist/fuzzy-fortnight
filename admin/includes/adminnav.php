@@ -7,7 +7,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.php">City Marks Admin</a>
+                <a class="navbar-brand" href="admin.php">City Marks Admin</a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
@@ -37,10 +37,10 @@
                         <a href="javascript:;" data-toggle="collapse" data-target="#posts_dropdown"><i class="fa fa-tags"></i> Products <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="posts_dropdown" class="collapse">
                             <li>
-                                <a href="items.php">View All Products</a>
+                                <a href="products.php">View All Products</a>
                             </li>
                             <li>
-                                <a href="items.php?source=add_item">Add Product</a>
+                                <a href="products.php?source=add_product">Add Product</a>
                             </li>
                         </ul>
                     </li>
@@ -59,7 +59,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-fw fa-user-circle-o"></i> Profile</a>
+                        <a href="profile.php"><i class="fa fa-fw fa-user-circle-o"></i> Profile</a>
                     </li>
                 </ul>
             </div>

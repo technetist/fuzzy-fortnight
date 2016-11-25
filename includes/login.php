@@ -1,8 +1,9 @@
+<?php session_start(); ?>
 <?php include "db.php"; ?>
 <?php include "../functions.php"; ?>
-<?php session_start(); ?>
 
-<?php 
+
+<?php
 if (isset($_POST['login'])) {
 	$email=$_POST['email'];
 	$password=$_POST['password'];
@@ -10,7 +11,7 @@ if (isset($_POST['login'])) {
 	$sanitized_username = mysqli_real_escape_string($connection, $email);
 	$sanitized_password = mysqli_real_escape_string($connection, $password);
 
-	$query = "SELECT * FROM users WHERE user_email = '{$sanitized_username}'";
+	$query = "SELECT * FROM users WHERE user_email = '{$sanitized_username}' OR username = '{$sanitized_username}' ";
 	$select_user_query = mysqli_query($connection, $query);
 	if (!$select_user_query) {
 		die("QUERY Failed". mysqli_error($connection));
@@ -23,6 +24,7 @@ if (isset($_POST['login'])) {
 		$db_user_email = escape($row['user_email']);
 		$db_username = escape($row['username']);
 		$db_user_password = escape($row['user_password']);
+		$db_user_gender = escape($row['user_gender']);
 	}
 	if (password_verify($sanitized_password, $db_user_password)) {
 		$_SESSION['user_id'] = $db_user_id;
@@ -31,9 +33,12 @@ if (isset($_POST['login'])) {
 		$_SESSION['lastname'] = $db_user_lastname;
 		$_SESSION['email'] = $db_user_email;
 		$_SESSION['role'] = $db_user_role;
+		$_SESSION['gender'] = $db_user_gender;
 	}
 	else {
+		$_SESSION['message'] = "<div class='container text-center'><p class='bg-danger'>Login information incorrect...</p>";
 		header("Location: ../index.php");
+
 	}
 
 	if (isset($_SESSION['role']) && $_SESSION['role'] == 'Admin') {

@@ -24,7 +24,6 @@ include "includes/nav.php";
 			$query = "SELECT * FROM orders ";
 			$query .= "JOIN order_items ";
 			$query .= "ON orders.id = order_items.order_id ";
-
 			$query .= "JOIN aftersell_items ";
 			$query .= "ON orders.aftersell = aftersell_items.item_id ";
 
@@ -58,7 +57,7 @@ include "includes/nav.php";
 				</div>
 			</div>
 			<?php } ?>
-			<?php if($aftersellId != 6){ ?>
+			<?php if($aftersellId != "6"){ ?>
 			<div class="row">
 				<div class="col-xs-1 col-sm-1"></div>
 				 

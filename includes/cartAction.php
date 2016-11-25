@@ -84,7 +84,7 @@ break;
 
 case 'placeOrder':
   if ($itemCount > 0 && !empty($_SESSION['user_id']))  {
-    $query = "INSERT INTO orders (user_id, total_price) VALUES ('".$_SESSION['user_id']."', '".$_SESSION['totalPrice']."');";
+    $query = "INSERT INTO orders (user_id, total_price, order_date) VALUES ('".$_SESSION['user_id']."', '".$_SESSION['totalPrice']."', now());";
     $insertOrder = mysqli_query($connection, $query);
     if($insertOrder){
           $orderID = $connection->insert_id;
@@ -109,8 +109,26 @@ case 'placeOrder':
             $insertOrderItems = $connection->multi_query($sql);
             } } 
             if($insertOrderItems){
-                unset($_SESSION['cart']);
-                header("Location: ../orderSuccess.php?id=$orderID");
+                
+                $cc_query = "INSERT INTO cc_info (order_id, customer_id, cc_num, cc_exp, cc_cvc) VALUES ('".$orderID."', '".$_SESSION['user_id']."', '".$_POST['cc-num']."', '".$_POST['cc-exp']."', '".$_POST['cc-cvc']."')";
+                $insertCcInfo = $connection->multi_query($cc_query);
+                
+                if($insertCcInfo){
+
+                  $address_query = "INSERT INTO addresses (order_id, user_id, line1, line2, city, state, country, zip) VALUES ('".$orderID."', '".$_SESSION['user_id']."', '".$_POST['address']."', '".$_POST['address2']."', '".$_POST['city']."', '".$_POST['state']."', '".$_POST['country']."', '".$_POST['zipcode']."')";
+                  $insertAddressInfo = $connection->multi_query($address_query);
+                  
+                  if($insertAddressInfo) {
+                    unset($_SESSION['cart']);
+                    header("Location: ../orderSuccess.php?id=$orderID");
+                  }else{
+                    print_r($address_query);
+                    // header("Location: checkout.php");
+                  }
+                }else{
+                  header("Location: checkout.php");
+                }
+
             }else{
                 header("Location: checkout.php");
             }

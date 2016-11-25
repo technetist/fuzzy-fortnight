@@ -137,29 +137,30 @@ $custRow = mysqli_fetch_assoc($select_users_query);
 		        CARD
 		      </span>
 		      PAYMENT CARD
-		      <input type="text" placeholder="Card number" class="cc-num" name="cc_num">
-		      <div>
-		        Expires:
-		        <input type="text" placeholder="MM/YY" class="cc-exp" name="cc-exp">
-		      </div>
-		    </div>
-		    <div class="back side">
-		      <div class="stripe"></div>
-		      <div class="signature">
-		        <span class="right">
-		        CVC: <input type="text" placeholder="000" class="cc-cvc" name="cc-cvc" maxlength="4">
-		        </span>
-		        <span class="sig">
-		          our loyal customer
-		        </span>
-		      </div>
-		    </div>
-		  </div>
-		  <div class="button flip">
-		    Flip over
-		  </div>
-		  <p>Now, where to send it?</p>
-		   <form action="includes/cartAction.php?action=placeOrder" id="demo-form" data-parsley-validate="" method="post">
+		      <form action="includes/cartAction.php?action=placeOrder" id="demo-form" data-parsley-validate="" method="post">
+			      <input type="text" placeholder="Card number" class="cc-num" name="cc-num">
+			      <div>
+			        Expires:
+			        <input type="text" placeholder="MM/YY" class="cc-exp" name="cc-exp">
+			      </div>
+			    </div>
+			    <div class="back side">
+			      <div class="stripe"></div>
+			      <div class="signature">
+			        <span class="right">
+			        CVC: <input type="text" placeholder="000" class="cc-cvc" name="cc-cvc" maxlength="4">
+			        </span>
+			        <span class="sig">
+			          our loyal customer
+			        </span>
+			      </div>
+			    </div>
+			  </div>
+			  <div class="button flip">
+			    Flip over
+			  </div>
+			  <p>Now, where to send it?</p>
+		   
 			   <div class="addr" required="">
 			   <input type="text" placeholder="Name" name="name" required="" value="John">
 			   <input type="text" placeholder="Address Line 1" name="address" required="" value="123 Main St">

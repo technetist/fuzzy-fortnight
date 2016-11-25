@@ -44,9 +44,12 @@ h1, .credit{
 .card .front{
   padding: 10px;
   transform: rotateX(0deg) rotateY(0deg);
+  -webkit-backface-visibility: hidden;
+  z-index: 99;
 }
 .card.flip .front{
   transform: rotateY(180deg);
+  -webkit-backface-visibility: hidden;
 }
 .card .cc-num{
   width: 100%;
