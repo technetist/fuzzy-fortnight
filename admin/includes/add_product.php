@@ -10,11 +10,11 @@
 		$product_desc = escape($_POST['product_desc']);
 		$product_short_desc = escape($_POST['product_short_desc']);
 
-		move_uploaded_file($image_temp, "../img/clothes/$gender/$product_type/$image");
+		move_uploaded_file($image_temp, "../img/clothes/".strtolower($gender)."/".strtolower($product_type)."/$image");
 
 		$query = "INSERT INTO products(product_category, product_name, product_price, product_desc, product_short_desc, product_img, product_gender, status) ";
 
-		$query .= "VALUES('{$product_type}', '{$name}', '{$price}', '{$product_desc}', '{$product_short_desc}', 'img/clothes/{$gender}/{$product_type}/{$image}', '{$gender}','{$availability}' ) ";
+		$query .= "VALUES('{$product_type}', '{$name}', '{$price}', '{$product_desc}', '{$product_short_desc}', 'img/clothes/".strtolower($gender)."/".strtolower($product_type)."/{$image}', '{$gender}','{$availability}' ) ";
 		
 		$create_post_query = mysqli_query($connection, $query);
 

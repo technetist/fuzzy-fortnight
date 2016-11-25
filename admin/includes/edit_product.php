@@ -26,7 +26,7 @@
         $product_desc = escape($_POST['product_desc']);
         $product_short_desc = escape($_POST['product_short_desc']);
 
-        move_uploaded_file($image_temp, "../img/clothes/$gender/$product_type/$image");
+        move_uploaded_file($image_temp, "../img/clothes/".strtolower($gender)."/".strtolower($product_type)."/$image");
 
     	if (empty($product_image)) {
     		$query = "SELECT * FROM products WHERE product_id = $the_product_id ";
@@ -44,7 +44,7 @@
     	$query .= "status = '{$availability}', ";
     	$query .= "product_desc = '{$product_desc}', ";
     	$query .= "product_short_desc= '{$product_short_desc}', ";
-    	$query .= "product_img = 'img/clothes/{$gender}/{$product_type}/{$image}' ";
+    	$query .= "product_img = 'img/clothes/".strtolower($gender)."/".strtolower($product_type)."/{$image}' ";
     	$query .= "WHERE product_id = {$the_product_id}";
 
     	$update_product = mysqli_query($connection, $query);
