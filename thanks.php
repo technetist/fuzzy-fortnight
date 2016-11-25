@@ -101,7 +101,7 @@ include "includes/nav.php";
 			</div>
 			<?php $ship_start_date = strtotime($orderDate."+ 3 days") ?>
 			<?php $ship_end_date = strtotime($orderDate."+ 5 days") ?>
-			<h4 class="text-center">Your package will be shipped between: <?php echo date(' l jS F Y', $ship_start_date) ?> - <?php echo date(' l jS F Y', $ship_end_date) ?></h4>
+			<h4 class="text-center">Your package will be shipped between: <?php echo date(' l F jS\, Y', $ship_start_date) ?> - <?php echo date(' l  F jS\, Y', $ship_end_date) ?></h4>
 			<div class="text-center" style="padding-bottom: 20px;">
 				<a href="index.php">Click to go to the landing page</a>
 			</div>

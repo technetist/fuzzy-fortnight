@@ -62,7 +62,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="comments.php">
+                            <a href="#">
                                 <div class="panel-footer">
                                     <span class="pull-left">View Details</span>
                                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -168,72 +168,141 @@
                         google.charts.setOnLoadCallback(drawChart);
                         function drawChart() {
                             var data = google.visualization.arrayToDataTable([
-                             ['Day', 'Orders', 'Revenue'],
+                             ['Day', 'Morning', 'Afternoon', 'Evening', 'Revenue'],
                              <?php
                                 //Sunday Orders
-                                $sunday_query = "SELECT order_date, WEEKDAY(order_date) FROM orders WHERE WEEKDAY(order_date) = 6";
-                                $select_sunday_orders = mysqli_query($connection, $sunday_query);
-                                $sunday_orders = mysqli_num_rows($select_sunday_orders);
+                                $sunday_morning_query = "SELECT HOUR(order_date), WEEKDAY(order_date) FROM orders WHERE WEEKDAY(order_date) = 6 && HOUR(order_date) BETWEEN 6 AND 12";
+                                $select_sunday_morning_orders = mysqli_query($connection, $sunday_morning_query);
+                                $sunday_morning_orders = mysqli_num_rows($select_sunday_morning_orders);
+
+                                $sunday_afternoon_query = "SELECT HOUR(order_date), WEEKDAY(order_date) FROM orders WHERE WEEKDAY(order_date) = 6 && HOUR(order_date) BETWEEN 12 AND 18";
+                                $select_sunday_afternoon_orders = mysqli_query($connection, $sunday_afternoon_query);
+                                $sunday_afternoon_orders = mysqli_num_rows($select_sunday_afternoon_orders);
+
+                                $sunday_evening_query = "SELECT HOUR(order_date), WEEKDAY(order_date) FROM orders WHERE WEEKDAY(order_date) = 6 && HOUR(order_date) < 6 OR HOUR(order_date) > 18";
+                                $select_sunday_evening_orders = mysqli_query($connection, $sunday_evening_query);
+                                $sunday_evening_orders = mysqli_num_rows($select_sunday_evening_orders);
+
                                 //Sunday Sum
-                                $sunday_sum_query = "SELECT SUM(total_price) AS value_sum, order_date, WEEKDAY(order_date) FROM orders WHERE WEEKDAY(order_date) = 6";
+                                $sunday_sum_query = "SELECT SUM(total_price) AS value_sum, WEEKDAY(order_date) FROM orders WHERE WEEKDAY(order_date) = 6";
                                 $select_sunday_sum = mysqli_query($connection, $sunday_sum_query);
                                 $sunday_row = mysqli_fetch_array($select_sunday_sum);
                                 $sunday_sum = $sunday_row['value_sum'];
 
+
                                 //Monday Orders
-                                $monday_query = "SELECT order_date, WEEKDAY(order_date) FROM orders WHERE WEEKDAY(order_date) = 0";
-                                $select_monday_orders = mysqli_query($connection, $monday_query);
-                                $monday_orders = mysqli_num_rows($select_monday_orders);
+                                $monday_morning_query = "SELECT HOUR(order_date), WEEKDAY(order_date) FROM orders WHERE WEEKDAY(order_date) = 0 && HOUR(order_date) BETWEEN 6 AND 12";
+                                $select_monday_morning_orders = mysqli_query($connection, $monday_morning_query);
+                                $monday_morning_orders = mysqli_num_rows($select_monday_morning_orders);
+
+                                $monday_afternoon_query = "SELECT HOUR(order_date), WEEKDAY(order_date) FROM orders WHERE WEEKDAY(order_date) = 0 && HOUR(order_date) BETWEEN 12 AND 18";
+                                $select_monday_afternoon_orders = mysqli_query($connection, $monday_afternoon_query);
+                                $monday_afternoon_orders = mysqli_num_rows($select_monday_afternoon_orders);
+
+                                $monday_evening_query = "SELECT HOUR(order_date), WEEKDAY(order_date) FROM orders WHERE WEEKDAY(order_date) = 0 && HOUR(order_date) < 6 OR HOUR(order_date) > 18";
+                                $select_monday_evening_orders = mysqli_query($connection, $monday_evening_query);
+                                $monday_evening_orders = mysqli_num_rows($select_monday_evening_orders);
+
                                 //Monday Sum
                                 $monday_sum_query = "SELECT SUM(total_price) AS value_sum, order_date, WEEKDAY(order_date) FROM orders WHERE WEEKDAY(order_date) = 0";
                                 $select_monday_sum = mysqli_query($connection, $monday_sum_query);
                                 $monday_row = mysqli_fetch_array($select_monday_sum);
                                 $monday_sum = $monday_row['value_sum'];
 
+
                                 //Tuesday Orders
-                                $tuesday_query = "SELECT order_date, WEEKDAY(order_date) FROM orders WHERE WEEKDAY(order_date) = 1";
-                                $select_tuesday_orders = mysqli_query($connection, $tuesday_query);
-                                $tuesday_orders = mysqli_num_rows($select_tuesday_orders);
+                                $tuesday_morning_query = "SELECT HOUR(order_date), WEEKDAY(order_date) FROM orders WHERE WEEKDAY(order_date) = 1 && HOUR(order_date) BETWEEN 6 AND 12";
+                                $select_tuesday_morning_orders = mysqli_query($connection, $tuesday_morning_query);
+                                $tuesday_morning_orders = mysqli_num_rows($select_tuesday_morning_orders);
+
+                                $tuesday_afternoon_query = "SELECT HOUR(order_date), WEEKDAY(order_date) FROM orders WHERE WEEKDAY(order_date) = 1 && HOUR(order_date) BETWEEN 12 AND 18";
+                                $select_tuesday_afternoon_orders = mysqli_query($connection, $tuesday_afternoon_query);
+                                $tuesday_afternoon_orders = mysqli_num_rows($select_tuesday_afternoon_orders);
+
+                                $tuesday_evening_query = "SELECT HOUR(order_date), WEEKDAY(order_date) FROM orders WHERE WEEKDAY(order_date) = 1 && HOUR(order_date) < 6 OR HOUR(order_date) > 18";
+                                $select_tuesday_evening_orders = mysqli_query($connection, $tuesday_evening_query);
+                                $tuesday_evening_orders = mysqli_num_rows($select_tuesday_evening_orders);
+
                                 //Tuesday Sum
                                 $tuesday_sum_query = "SELECT SUM(total_price) AS value_sum, order_date, WEEKDAY(order_date) FROM orders WHERE WEEKDAY(order_date) = 1";
                                 $select_tuesday_sum = mysqli_query($connection, $tuesday_sum_query);
                                 $tuesday_row = mysqli_fetch_array($select_tuesday_sum);
                                 $tuesday_sum = $tuesday_row['value_sum'];
 
+
                                 //Wednesday Orders
-                                $wednesday_query = "SELECT order_date, WEEKDAY(order_date) FROM orders WHERE WEEKDAY(order_date) = 2";
-                                $select_wednesday_orders = mysqli_query($connection, $wednesday_query);
-                                $wednesday_orders = mysqli_num_rows($select_wednesday_orders);
+                                $wednesday_morning_query = "SELECT HOUR(order_date), WEEKDAY(order_date) FROM orders WHERE WEEKDAY(order_date) = 2 && HOUR(order_date) BETWEEN 6 AND 12";
+                                $select_wednesday_morning_orders = mysqli_query($connection, $wednesday_morning_query);
+                                $wednesday_morning_orders = mysqli_num_rows($select_wednesday_morning_orders);
+
+                                $wednesday_afternoon_query = "SELECT HOUR(order_date), WEEKDAY(order_date) FROM orders WHERE WEEKDAY(order_date) = 2 && HOUR(order_date) BETWEEN 12 AND 18";
+                                $select_wednesday_afternoon_orders = mysqli_query($connection, $wednesday_afternoon_query);
+                                $wednesday_afternoon_orders = mysqli_num_rows($select_wednesday_afternoon_orders);
+
+                                $wednesday_evening_query = "SELECT HOUR(order_date), WEEKDAY(order_date) FROM orders WHERE WEEKDAY(order_date) = 2 && HOUR(order_date) < 6 OR HOUR(order_date) > 18";
+                                $select_wednesday_evening_orders = mysqli_query($connection, $wednesday_evening_query);
+                                $wednesday_evening_orders = mysqli_num_rows($select_wednesday_evening_orders);
+
                                 //Wednesday Sum
                                 $wednesday_sum_query = "SELECT SUM(total_price) AS value_sum, order_date, WEEKDAY(order_date) FROM orders WHERE WEEKDAY(order_date) = 2";
                                 $select_wednesday_sum = mysqli_query($connection, $wednesday_sum_query);
                                 $wednesday_row = mysqli_fetch_array($select_wednesday_sum);
                                 $wednesday_sum = $wednesday_row['value_sum'];
 
+
                                 //Thursday Orders
-                                $thursday_query = "SELECT order_date, WEEKDAY(order_date) FROM orders WHERE WEEKDAY(order_date) = 3";
-                                $select_thursday_orders = mysqli_query($connection, $thursday_query);
-                                $thursday_orders = mysqli_num_rows($select_thursday_orders);
+                                $thursday_morning_query = "SELECT HOUR(order_date), WEEKDAY(order_date) FROM orders WHERE WEEKDAY(order_date) = 3 && HOUR(order_date) BETWEEN 6 AND 12";
+                                $select_thursday_morning_orders = mysqli_query($connection, $thursday_morning_query);
+                                $thursday_morning_orders = mysqli_num_rows($select_thursday_morning_orders);
+
+                                $thursday_afternoon_query = "SELECT HOUR(order_date), WEEKDAY(order_date) FROM orders WHERE WEEKDAY(order_date) = 3 && HOUR(order_date) BETWEEN 12 AND 18";
+                                $select_thursday_afternoon_orders = mysqli_query($connection, $thursday_afternoon_query);
+                                $thursday_afternoon_orders = mysqli_num_rows($select_thursday_afternoon_orders);
+
+                                $thursday_evening_query = "SELECT HOUR(order_date), WEEKDAY(order_date) FROM orders WHERE WEEKDAY(order_date) = 3 && HOUR(order_date) < 6 OR HOUR(order_date) > 18";
+                                $select_thursday_evening_orders = mysqli_query($connection, $thursday_evening_query);
+                                $thursday_evening_orders = mysqli_num_rows($select_thursday_evening_orders);
+
                                 //Thursday Sum
                                 $thursday_sum_query = "SELECT SUM(total_price) AS value_sum, order_date, WEEKDAY(order_date) FROM orders WHERE WEEKDAY(order_date) = 1";
                                 $select_thursday_sum = mysqli_query($connection, $thursday_sum_query);
                                 $thursday_row = mysqli_fetch_array($select_thursday_sum);
                                 $thursday_sum = $thursday_row['value_sum'];
 
+
                                 //Friday Orders
-                                $friday_query = "SELECT order_date, WEEKDAY(order_date) FROM orders WHERE WEEKDAY(order_date) = 4";
-                                $select_friday_orders = mysqli_query($connection, $friday_query);
-                                $friday_orders = mysqli_num_rows($select_friday_orders);
+                                $friday_morning_query = "SELECT HOUR(order_date), WEEKDAY(order_date) FROM orders WHERE WEEKDAY(order_date) = 4 && HOUR(order_date) BETWEEN 6 AND 12";
+                                $select_friday_morning_orders = mysqli_query($connection, $friday_morning_query);
+                                $friday_morning_orders = mysqli_num_rows($select_friday_morning_orders);
+
+                                $friday_afternoon_query = "SELECT HOUR(order_date), WEEKDAY(order_date) FROM orders WHERE WEEKDAY(order_date) = 4 && HOUR(order_date) BETWEEN 12 AND 18";
+                                $select_friday_afternoon_orders = mysqli_query($connection, $friday_afternoon_query);
+                                $friday_afternoon_orders = mysqli_num_rows($select_friday_afternoon_orders);
+
+                                $friday_evening_query = "SELECT HOUR(order_date), WEEKDAY(order_date) FROM orders WHERE WEEKDAY(order_date) = 4 && HOUR(order_date) < 6 OR HOUR(order_date) > 18";
+                                $select_friday_evening_orders = mysqli_query($connection, $friday_evening_query);
+                                $friday_evening_orders = mysqli_num_rows($select_friday_evening_orders);
+
                                 //Friday Sum
                                 $friday_sum_query = "SELECT SUM(total_price) AS value_sum, order_date, WEEKDAY(order_date) FROM orders WHERE WEEKDAY(order_date) = 1";
                                 $select_friday_sum = mysqli_query($connection, $friday_sum_query);
                                 $friday_row = mysqli_fetch_array($select_friday_sum);
                                 $friday_sum = $friday_row['value_sum'];
 
+
                                 //Saturday Orders
-                                $saturday_query = "SELECT order_date, WEEKDAY(order_date) FROM orders WHERE WEEKDAY(order_date) = 5";
-                                $select_saturday_orders = mysqli_query($connection, $saturday_query);
-                                $saturday_orders = mysqli_num_rows($select_saturday_orders);
+                                $saturday_morning_query = "SELECT HOUR(order_date), WEEKDAY(order_date) FROM orders WHERE WEEKDAY(order_date) = 5 && HOUR(order_date) BETWEEN 6 AND 12";
+                                $select_saturday_morning_orders = mysqli_query($connection, $saturday_morning_query);
+                                $saturday_morning_orders = mysqli_num_rows($select_saturday_morning_orders);
+
+                                $saturday_afternoon_query = "SELECT HOUR(order_date), WEEKDAY(order_date) FROM orders WHERE WEEKDAY(order_date) = 5 && HOUR(order_date) BETWEEN 12 AND 18";
+                                $select_saturday_afternoon_orders = mysqli_query($connection, $saturday_afternoon_query);
+                                $saturday_afternoon_orders = mysqli_num_rows($select_saturday_afternoon_orders);
+
+                                $saturday_evening_query = "SELECT HOUR(order_date), WEEKDAY(order_date) FROM orders WHERE WEEKDAY(order_date) = 5 && HOUR(order_date) < 6 OR HOUR(order_date) > 18";
+                                $select_saturday_evening_orders = mysqli_query($connection, $saturday_evening_query);
+                                $saturday_evening_orders = mysqli_num_rows($select_saturday_evening_orders);
+
                                 //Saturday Sum
                                 $saturday_sum_query = "SELECT SUM(total_price) AS value_sum, order_date, WEEKDAY(order_date) FROM orders WHERE WEEKDAY(order_date) = 1";
                                 $select_saturday_sum = mysqli_query($connection, $saturday_sum_query);
@@ -241,11 +310,13 @@
                                 $saturday_sum = $saturday_row['value_sum'];
 
                                 $day_text = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-                                $day_data = [$monday_orders, $tuesday_orders, $wednesday_orders, $thursday_orders, $friday_orders, $saturday_orders, $sunday_orders];
+                                $morning_data = [$monday_morning_orders, $tuesday_morning_orders, $wednesday_morning_orders, $thursday_morning_orders, $friday_morning_orders, $saturday_morning_orders, $sunday_morning_orders];
+                                $afternoon_data = [$monday_afternoon_orders, $tuesday_afternoon_orders, $wednesday_afternoon_orders, $thursday_afternoon_orders, $friday_afternoon_orders, $saturday_afternoon_orders, $sunday_afternoon_orders];
+                                $evening_data = [$monday_evening_orders, $tuesday_evening_orders, $wednesday_evening_orders, $thursday_evening_orders, $friday_evening_orders, $saturday_evening_orders, $sunday_evening_orders];
                                 $day_revenue = [$monday_sum, $tuesday_sum, $wednesday_sum, $thursday_sum, $friday_sum, $saturday_sum, $sunday_sum];
 
                                 for ($i = 0; $i < 7; $i++) {
-                                        echo "['{$day_text[$i]}',{$day_data[$i]},{$day_revenue[$i]}],";
+                                        echo "['{$day_text[$i]}',{$morning_data[$i]},{$afternoon_data[$i]},{$evening_data[$i]},{$day_revenue[$i]}],";
                                     }
                              ?>
                           ]);
@@ -253,8 +324,8 @@
                             var options = {
                               title : 'Orders By Day',
                               vAxis: {title: 'Orders'},
-                              seriesType: 'bars',
-                              series: {1: {type: 'line'}},
+                              seriesType: 'steppedArea',
+                              series: {3: {type: 'line'}},
                               chartArea: {
                                     height: '60%'
                                 },
@@ -274,7 +345,9 @@
 
    
                             var options2 = {
-                                seriesType: 'bars',
+                                seriesType: 'steppedArea',
+                                connectSteps: false,
+                                isStacked: true,
                                 chartArea: {
                                     top: 20,
                                     height: '60%'
@@ -291,7 +364,7 @@
                                     0:{
                                         targetAxisIndex: 1
                                     },
-                                    1: {
+                                    3: {
                                         type: 'line',
                                         targetAxisIndex: 1
                                     }
