@@ -32,6 +32,13 @@
                           </div>
                         </div>
                       </div>
+                      <div class="col-md-12">
+                        <div class="text-center">
+                          <div class="btn-group">
+                            <a href="user_orders.php" class="btn btn-primary btn-account">View Orders</a>
+                          </div>
+                        </div>
+                      </div>
                       <?php if(isset($_SESSION['role']) && $_SESSION['role'] == 'Admin'): ?>
                       <div class="col-md-12">
                         <div class="text-center">

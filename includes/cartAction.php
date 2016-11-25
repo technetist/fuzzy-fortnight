@@ -84,6 +84,7 @@ break;
 
 case 'placeOrder':
   if ($itemCount > 0 && !empty($_SESSION['user_id']))  {
+    if ($_POST['cc-num'] == '4111 1111 1111 1111') {
     $query = "INSERT INTO orders (user_id, total_price, order_date) VALUES ('".$_SESSION['user_id']."', '".$_SESSION['totalPrice']."', now());";
     $insertOrder = mysqli_query($connection, $query);
     if($insertOrder){
@@ -123,21 +124,26 @@ case 'placeOrder':
                     header("Location: ../orderSuccess.php?id=$orderID");
                   }else{
                     print_r($address_query);
-                    // header("Location: checkout.php");
                   }
                 }else{
-                  header("Location: checkout.php");
+                  header("Location: ../checkout.php");
                 }
 
             }else{
-                header("Location: checkout.php");
+                header("Location: ../checkout.php");
             }
         }else{
-            header("Location: checkout.php");
+            header("Location: ../checkout.php");
         }   
+      }elseif ($_POST['cc-num'] == '4012 8888 8888 1881') {
+        header("Location: ../checkout.php?msg=1");
+      }else {
+        header("Location: ../checkout.php?msg=2");
+      }
   }else {
     header("Location: index.php");
   }
+
   break;
 
 endswitch;

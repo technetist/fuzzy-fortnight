@@ -171,57 +171,78 @@
                              ['Day', 'Orders', 'Revenue'],
                              <?php
                                 //Sunday Orders
-                                $sunday_query = "SELECT total_price AS value_sum, order_date, WEEKDAY(order_date) FROM orders WHERE WEEKDAY(order_date) = 0";
+                                $sunday_query = "SELECT order_date, WEEKDAY(order_date) FROM orders WHERE WEEKDAY(order_date) = 6";
                                 $select_sunday_orders = mysqli_query($connection, $sunday_query);
                                 $sunday_orders = mysqli_num_rows($select_sunday_orders);
-                                $sunday_row = mysqli_fetch_array($select_sunday_orders);
+                                //Sunday Sum
+                                $sunday_sum_query = "SELECT SUM(total_price) AS value_sum, order_date, WEEKDAY(order_date) FROM orders WHERE WEEKDAY(order_date) = 6";
+                                $select_sunday_sum = mysqli_query($connection, $sunday_sum_query);
+                                $sunday_row = mysqli_fetch_array($select_sunday_sum);
                                 $sunday_sum = $sunday_row['value_sum'];
 
                                 //Monday Orders
-                                $monday_query = "SELECT total_price AS value_sum, order_date, WEEKDAY(order_date) FROM orders WHERE WEEKDAY(order_date) = 1";
+                                $monday_query = "SELECT order_date, WEEKDAY(order_date) FROM orders WHERE WEEKDAY(order_date) = 0";
                                 $select_monday_orders = mysqli_query($connection, $monday_query);
                                 $monday_orders = mysqli_num_rows($select_monday_orders);
-                                $monday_row = mysqli_fetch_array($select_monday_orders);
+                                //Monday Sum
+                                $monday_sum_query = "SELECT SUM(total_price) AS value_sum, order_date, WEEKDAY(order_date) FROM orders WHERE WEEKDAY(order_date) = 0";
+                                $select_monday_sum = mysqli_query($connection, $monday_sum_query);
+                                $monday_row = mysqli_fetch_array($select_monday_sum);
                                 $monday_sum = $monday_row['value_sum'];
 
                                 //Tuesday Orders
-                                $tuesday_query = "SELECT total_price AS value_sum, order_date, WEEKDAY(order_date) FROM orders WHERE WEEKDAY(order_date) = 2";
+                                $tuesday_query = "SELECT order_date, WEEKDAY(order_date) FROM orders WHERE WEEKDAY(order_date) = 1";
                                 $select_tuesday_orders = mysqli_query($connection, $tuesday_query);
                                 $tuesday_orders = mysqli_num_rows($select_tuesday_orders);
-                                $tuesday_row = mysqli_fetch_array($select_tuesday_orders);
+                                //Tuesday Sum
+                                $tuesday_sum_query = "SELECT SUM(total_price) AS value_sum, order_date, WEEKDAY(order_date) FROM orders WHERE WEEKDAY(order_date) = 1";
+                                $select_tuesday_sum = mysqli_query($connection, $tuesday_sum_query);
+                                $tuesday_row = mysqli_fetch_array($select_tuesday_sum);
                                 $tuesday_sum = $tuesday_row['value_sum'];
 
                                 //Wednesday Orders
-                                $wednesday_query = "SELECT total_price AS value_sum, order_date, WEEKDAY(order_date) FROM orders WHERE WEEKDAY(order_date) = 3";
+                                $wednesday_query = "SELECT order_date, WEEKDAY(order_date) FROM orders WHERE WEEKDAY(order_date) = 2";
                                 $select_wednesday_orders = mysqli_query($connection, $wednesday_query);
                                 $wednesday_orders = mysqli_num_rows($select_wednesday_orders);
-                                $wednesday_row = mysqli_fetch_array($select_wednesday_orders);
+                                //Wednesday Sum
+                                $wednesday_sum_query = "SELECT SUM(total_price) AS value_sum, order_date, WEEKDAY(order_date) FROM orders WHERE WEEKDAY(order_date) = 2";
+                                $select_wednesday_sum = mysqli_query($connection, $wednesday_sum_query);
+                                $wednesday_row = mysqli_fetch_array($select_wednesday_sum);
                                 $wednesday_sum = $wednesday_row['value_sum'];
 
                                 //Thursday Orders
-                                $thursday_query = "SELECT total_price AS value_sum, order_date, WEEKDAY(order_date) FROM orders WHERE WEEKDAY(order_date) = 4";
+                                $thursday_query = "SELECT order_date, WEEKDAY(order_date) FROM orders WHERE WEEKDAY(order_date) = 3";
                                 $select_thursday_orders = mysqli_query($connection, $thursday_query);
                                 $thursday_orders = mysqli_num_rows($select_thursday_orders);
-                                $thursday_row = mysqli_fetch_array($select_thursday_orders);
+                                //Thursday Sum
+                                $thursday_sum_query = "SELECT SUM(total_price) AS value_sum, order_date, WEEKDAY(order_date) FROM orders WHERE WEEKDAY(order_date) = 1";
+                                $select_thursday_sum = mysqli_query($connection, $thursday_sum_query);
+                                $thursday_row = mysqli_fetch_array($select_thursday_sum);
                                 $thursday_sum = $thursday_row['value_sum'];
 
                                 //Friday Orders
-                                $friday_query = "SELECT total_price AS value_sum, order_date, WEEKDAY(order_date) FROM orders WHERE WEEKDAY(order_date) = 5";
+                                $friday_query = "SELECT order_date, WEEKDAY(order_date) FROM orders WHERE WEEKDAY(order_date) = 4";
                                 $select_friday_orders = mysqli_query($connection, $friday_query);
                                 $friday_orders = mysqli_num_rows($select_friday_orders);
-                                $friday_row = mysqli_fetch_array($select_friday_orders);
+                                //Friday Sum
+                                $friday_sum_query = "SELECT SUM(total_price) AS value_sum, order_date, WEEKDAY(order_date) FROM orders WHERE WEEKDAY(order_date) = 1";
+                                $select_friday_sum = mysqli_query($connection, $friday_sum_query);
+                                $friday_row = mysqli_fetch_array($select_friday_sum);
                                 $friday_sum = $friday_row['value_sum'];
 
                                 //Saturday Orders
-                                $saturday_query = "SELECT total_price AS value_sum, order_date, WEEKDAY(order_date) FROM orders WHERE WEEKDAY(order_date) = 6";
+                                $saturday_query = "SELECT order_date, WEEKDAY(order_date) FROM orders WHERE WEEKDAY(order_date) = 5";
                                 $select_saturday_orders = mysqli_query($connection, $saturday_query);
                                 $saturday_orders = mysqli_num_rows($select_saturday_orders);
-                                $saturday_row = mysqli_fetch_array($select_saturday_orders);
+                                //Saturday Sum
+                                $saturday_sum_query = "SELECT SUM(total_price) AS value_sum, order_date, WEEKDAY(order_date) FROM orders WHERE WEEKDAY(order_date) = 1";
+                                $select_saturday_sum = mysqli_query($connection, $saturday_sum_query);
+                                $saturday_row = mysqli_fetch_array($select_saturday_sum);
                                 $saturday_sum = $saturday_row['value_sum'];
 
                                 $day_text = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
                                 $day_data = [$monday_orders, $tuesday_orders, $wednesday_orders, $thursday_orders, $friday_orders, $saturday_orders, $sunday_orders];
-                                $day_revenue = [$sunday_sum, $monday_sum, $tuesday_sum, $wednesday_sum, $thursday_sum, $friday_sum, $saturday_sum];
+                                $day_revenue = [$monday_sum, $tuesday_sum, $wednesday_sum, $thursday_sum, $friday_sum, $saturday_sum, $sunday_sum];
 
                                 for ($i = 0; $i < 7; $i++) {
                                         echo "['{$day_text[$i]}',{$day_data[$i]},{$day_revenue[$i]}],";

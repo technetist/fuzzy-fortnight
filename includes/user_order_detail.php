@@ -1,5 +1,6 @@
+
 <?php
-    if (isset($_GET['view_order'])) {
+    if (isset($_GET['view_order']) && isset($_SESSION['user_id'])) {
         $the_order_id = escape($_GET['view_order']);
 
         $query = "SELECT * FROM orders JOIN users ON orders.user_id = users.user_id WHERE id = ".$the_order_id."";
@@ -12,11 +13,14 @@
             $user_lastname = $row['last_name'];
             $user_email = $row['user_email'];
         }
-
-		} else {
-		    header("Location: index.php");
-		}
+	} else {
+	    header("Location: index.php");
+	}
+	if ($_SESSION['user_id'] == $user_id) {
+		
 ?>
+
+<div class="container">
     <div class="row">
         <div class="col-xs-6">
 		</div>
@@ -146,10 +150,10 @@
 		  </div>
 		  <div class="col-xs-2">
 		    <strong>
-		      $<?php if($aftersellId != "6"){echo $aftersellSubTotal;}else{echo $subTotal;} ?><br>
-		      $<?php echo $salesTax * $subTotal ?><br>
-		      $<?php echo $shipping ?><br>
-		      $<?php echo $totalPrice ?><br>
+		      $<?php if($aftersellId != "6"){echo $aftersellSubTotal;}else{echo $subTotal;} ?> <br>
+		      $<?php echo $salesTax * $subTotal ?> <br>
+		      $<?php echo $shipping ?> <br>
+		      $<?php echo $totalPrice ?> <br>
 		    </strong>
 		  </div>
 		</div>
@@ -184,3 +188,7 @@
 		<div class="col-xs-7">
 		</div>
     </div> <!-- /row -->
+</div>
+<?php }else {
+	    header("Location: index.php");
+	}?>

@@ -93,6 +93,15 @@ $itemCount = 0;
                         <h5><strong>$<?php echo $totalPrice ?></strong></h5></td>
                     </tr>
                     <?php
+                        $salesTax = 0.12;
+                    ?>
+                    <tr>
+                        <td>   </td>
+                        <td>   </td>
+                        <td><h5>Sales Tax</h5></td>
+                        <td class="text-right"><h5><strong>$<?php echo $taxPrice = $totalPrice * $salesTax ?></strong></h5></td>
+                    </tr>
+                    <?php
                         $shipping = 6.94;
                     ?>
                     <tr>
@@ -105,7 +114,7 @@ $itemCount = 0;
                         <td>   </td>
                         <td>   </td>
                         <td><h3>Total</h3></td>
-                        <td class="text-right"><h3><strong>$<?php echo $finalPrice = $totalPrice + $shipping;
+                        <td class="text-right"><h3><strong>$<?php echo $finalPrice = $totalPrice + $taxPrice + $shipping;
 
                         $_SESSION['totalPrice'] = $finalPrice;
                         ?></strong></h3></td>

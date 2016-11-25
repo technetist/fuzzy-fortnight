@@ -2,8 +2,7 @@
         <thead>
             <tr>
                 <th>Order Id</th>
-                <th>First Name</th>
-                <th>Last Name</th>
+                <th>Name</th>
                 <th>Email</th>
                 <th>Total</th>
                 <th>Order Status</th>
@@ -24,13 +23,15 @@
                     $order_status = escape($row['status']);
                     $price = escape($row['total_price']);
 
+                    if($order_status == 1) {
+                        $order_status = "Unshipped";
+                    }else{
+                        $order_status = "Shipped";
+                    }
+
                     echo "<tr>";
                     echo "<td>{$order_id}</td>";
-                    echo "<td>{$user_firstname}</td>";
-
-                   
-
-                    echo "<td>{$user_lastname}</td>";
+                    echo "<td>{$user_firstname} {$user_lastname}</td>";
                     echo "<td>{$user_email}</td>";
                     echo "<td>$".$price."</td>";
                     echo "<td>{$order_status}</td>";

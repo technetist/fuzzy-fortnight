@@ -69,7 +69,7 @@
         }
     }
 } else {
-    header("Location: index.php");
+    header("Location: admin.php");
 }
 ?>
 

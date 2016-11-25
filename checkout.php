@@ -30,7 +30,7 @@ if(!isset($_SESSION['user_id'])){
 			$sanitized_username = mysqli_real_escape_string($connection, $email);
 			$sanitized_password = mysqli_real_escape_string($connection, $password);
 
-			$query = "SELECT * FROM users WHERE user_email = '{$sanitized_username}'";
+			$query = "SELECT * FROM users WHERE user_email = '{$sanitized_username}' || username = '{$sanitized_username}' ";
 			$select_user_query = mysqli_query($connection, $query);
 			if (!$select_user_query) {
 				die("QUERY Failed". mysqli_error($connection));
@@ -91,6 +91,22 @@ $query = "SELECT * FROM users WHERE user_id = ".$_SESSION['user_id'];
 $select_users_query = mysqli_query($connection, $query);
 $custRow = mysqli_fetch_assoc($select_users_query);
 
+if (isset($_REQUEST['msg'])) {
+	$msg = $_REQUEST['msg'];
+
+
+switch ($msg) {
+	case '1':
+		echo "<div class='container text-center'><p class='bg-danger'>Declined due to insufficient funds...</p>";
+		break;
+	case '2':
+		echo "<div class='container text-center'><p class='bg-danger'>Payment method not accepted...</p>";
+		break;
+	default:
+		break;
+}
+}
+
 ?>
 
 	<div class="checkout" style="padding-bottom: 20px;">
@@ -138,17 +154,17 @@ $custRow = mysqli_fetch_assoc($select_users_query);
 		      </span>
 		      PAYMENT CARD
 		      <form action="includes/cartAction.php?action=placeOrder" id="demo-form" data-parsley-validate="" method="post">
-			      <input type="text" placeholder="Card number" class="cc-num" name="cc-num">
+			      <input type="text" required="" placeholder="Card number" class="cc-num" name="cc-num">
 			      <div>
 			        Expires:
-			        <input type="text" placeholder="MM/YY" class="cc-exp" name="cc-exp">
+			        <input type="text" required="" placeholder="MM/YY" class="cc-exp" name="cc-exp">
 			      </div>
 			    </div>
 			    <div class="back side">
 			      <div class="stripe"></div>
 			      <div class="signature">
 			        <span class="right">
-			        CVC: <input type="text" placeholder="000" class="cc-cvc" name="cc-cvc" maxlength="4">
+			        CVC: <input type="text" required="" placeholder="000" class="cc-cvc" name="cc-cvc" maxlength="4">
 			        </span>
 			        <span class="sig">
 			          our loyal customer

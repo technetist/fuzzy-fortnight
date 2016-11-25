@@ -29,6 +29,7 @@ include "includes/nav.php";
 
 			$query .= "WHERE order_id = ".$orderID;
 			$join_query = mysqli_query($connection,$query);
+			$item_price = 0;
             while ( $product = mysqli_fetch_assoc($join_query)) {
 
                 $productName = $product['order_product_name'];
@@ -39,8 +40,9 @@ include "includes/nav.php";
                 $aftersellName = $product['item_name'];
                 $aftersellPrice = $product['item_price'];
                 $shipping = 6.94;
+                $salesTax = 0.12;
             	
-
+                $item_price += $productPrice;
                 
                 
             ?>
@@ -78,6 +80,12 @@ include "includes/nav.php";
 				</div>
 			</div>
 			<?php } ?>
+			<div class="row total">
+				<div class="col-xs-1 col-sm-2">
+				</div>
+				<div class="col-xs-8 col-sm-7 text-right">Sales Tax:</div>
+				<div class="col-xs-2 col-sm-1 total-price">$<?php echo $taxPrice = $salesTax * $item_price; ?></div>
+			</div>
 			<div class="row total">
 				<div class="col-xs-1 col-sm-2">
 				</div>
