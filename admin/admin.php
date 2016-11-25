@@ -325,6 +325,7 @@
                               title : 'Orders By Day',
                               vAxis: {title: 'Orders'},
                               seriesType: 'steppedArea',
+                              colors: ['#4374E0', '#53A8FB', '#F1CA3A', 'red'],
                               series: {3: {type: 'line'}},
                               chartArea: {
                                     height: '60%'
@@ -347,6 +348,7 @@
                             var options2 = {
                                 seriesType: 'steppedArea',
                                 connectSteps: false,
+                                colors: ['#4374E0', '#53A8FB', '#F1CA3A', '#E49307'],
                                 isStacked: true,
                                 chartArea: {
                                     top: 20,
