@@ -39,6 +39,7 @@ include "includes/nav.php";
                 $aftersellImg = $product['item_img'];
                 $aftersellName = $product['item_name'];
                 $aftersellPrice = $product['item_price'];
+                $orderDate = $product['order_date'];
                 $shipping = 6.94;
                 $salesTax = 0.12;
             	
@@ -98,7 +99,9 @@ include "includes/nav.php";
 				<div class="col-xs-8 col-sm-7 text-right">Total:</div>
 				<div class="col-xs-2 col-sm-1 total-price">$<?php echo $totalPrice; ?></div>
 			</div>
-			<p>An email will be sent with this summary as well. (Once that feature is in place)</p>
+			<?php $ship_start_date = strtotime($orderDate."+ 3 days") ?>
+			<?php $ship_end_date = strtotime($orderDate."+ 5 days") ?>
+			<h4 class="text-center">Your package will be shipped between: <?php echo date(' l jS F Y', $ship_start_date) ?> - <?php echo date(' l jS F Y', $ship_end_date) ?></h4>
 			<div class="text-center" style="padding-bottom: 20px;">
 				<a href="index.php">Click to go to the landing page</a>
 			</div>
